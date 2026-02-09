@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIDRA - Digital Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Cool RGB Palette */
+            --rgb-cyan: 6, 182, 212;
+            --rgb-indigo: 99, 102, 241;
+            --rgb-violet: 139, 92, 246;
+            --rgb-emerald: 16, 185, 129;
+            --rgb-rose: 244, 63, 94;
+        }
+
+        .dark {
+            --bg-app: #020617;
+            --bg-panel: rgba(15, 23, 42, 0.6);
+            --bg-header: rgba(2, 6, 23, 0.8);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-panel: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --neon-shadow: rgba(99, 102, 241, 0.2);
+            --scroll-track: #020617;
+            --scroll-thumb: #1e293b;
+        }
+
+        .light {
+            --bg-app: #f1f5f9;
+            --bg-panel: rgba(255, 255, 255, 0.9);
+            --bg-header: rgba(255, 255, 255, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-panel: rgba(0, 0, 0, 0.1);
+            --input-bg: rgba(0, 0, 0, 0.05);
+            --neon-shadow: rgba(99, 102, 241, 0.1);
+            --scroll-track: #f1f5f9;
+            --scroll-thumb: #cbd5e1;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s;
+        }
+        
+        .leaflet-container { 
+            width: 100%; 
+            height: 500px; 
+            border-radius: 24px; 
+            border: 2px solid var(--border-panel);
+            filter: grayscale(0.5) contrast(1.1) brightness(0.8);
+        }
+
+        /* Tactical Panel Styling */
+        .glass-panel {
+            background: var(--bg-panel);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-panel);
+            border-radius: 24px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-panel:hover {
+            border-color: rgb(var(--rgb-indigo));
+            box-shadow: 0 0 30px var(--neon-shadow);
+            transform: translateY(-4px);
+        }
+
+        .btn-action {
+            border-radius: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-sos {
+            background: rgb(var(--rgb-rose));
+            box-shadow: 0 0 20px rgba(var(--rgb-rose), 0.4);
+            animation: pulse-sos 2s infinite;
+        }
+
+        @keyframes pulse-sos {
+            0% { box-shadow: 0 0 0 0 rgba(var(--rgb-rose), 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(var(--rgb-rose), 0); }
+            100% { box-shadow: 0 0 0 0 rgba(var(--rgb-rose), 0); }
+        }
+
+        .neon-text-blue { text-shadow: 0 0 10px rgba(var(--rgb-indigo), 0.5); }
+        
+        .section-header {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgb(var(--rgb-indigo));
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--scroll-track); }
+        ::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgb(var(--rgb-indigo)); }
+
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Theme Transitions */
+        * { transition: background-color 0.2s, border-color 0.2s; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-leaflet": "https://esm.sh/react-leaflet@^5.0.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="theme-aware">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
