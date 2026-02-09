@@ -9,10 +9,10 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    // your project dependencies
+    
   },
   "devDependencies": {
     "gh-pages": "^5.0.0",
-    // other dev dependencies
+    
   }
 }
