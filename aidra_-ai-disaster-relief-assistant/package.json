@@ -1,18 +1,9 @@
 {
-  "name": "AIDRA",
-  "version": "1.0.0",
-  "private": true,
-  "homepage": "https://your-github-username.github.io/AIDRA",
+  "homepage": "https://YOUR-USERNAME.github.io/AIDAR",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
-  },
-  "dependencies": {
-    
-  },
-  "devDependencies": {
-    "gh-pages": "^5.0.0",
-    
   }
 }
